@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WHOOP Integration - EnduranceCoaching.ai</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .whoop-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .whoop-icon {
+            width: 40px;
+            height: 40px;
+            background: #dc2626;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #1f2937;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: #6b7280;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .feature {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .feature h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+        
+        .feature p {
+            color: #6b7280;
+        }
+        
+        .dashboard-mockup {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 50px;
+        }
+        
+        .dashboard-header {
+            background: #f9fafb;
+            padding: 20px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+        }
+        
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 30px;
+        }
+        
+        .metric {
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .metric.recovery {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+        }
+        
+        .metric.hrv {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+        }
+        
+        .metric.sleep {
+            background: #f3e8ff;
+            border: 1px solid #c4b5fd;
+        }
+        
+        .metric.strain {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+        }
+        
+        .metric-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .metric-label {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+        
+        .ai-recommendation {
+            background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            border: 1px solid #bfdbfe;
+        }
+        
+        .ai-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .ai-icon {
+            width: 32px;
+            height: 32px;
+            background: #3b82f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .integration-flow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .flow-step {
+            text-align: center;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .step-1 { background: #dc2626; }
+        .step-2 { background: #3b82f6; }
+        .step-3 { background: #10b981; }
+        .step-4 { background: #7c3aed; }
+        
+        .cta {
+            text-align: center;
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .cta h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #1f2937;
+        }
+        
+        .cta p {
+            font-size: 1.1rem;
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #3b82f6;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            margin: 0 10px;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #2563eb;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #3b82f6;
+            border: 2px solid #3b82f6;
+        }
+        
+        .btn-secondary:hover {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .metrics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <h2>EnduranceCoaching.ai</h2>
+                <span>×</span>
+                <div class="whoop-badge">
+                    <div class="whoop-icon">W</div>
+                    <span><strong>WHOOP</strong></span>
+                </div>
+            </div>
+            <div>Integration Showcase</div>
+        </div>
+
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>Intelligent Training with WHOOP Recovery Data</h1>
+            <p>See how EnduranceCoaching.ai integrates WHOOP recovery metrics to provide AI-powered training adaptations based on your body's readiness to perform.</p>
+        </div>
+
+        <!-- Features -->
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">❤️</div>
+                <h3>Recovery-Based Training</h3>
+                <p>Automatically adjust workout intensity based on HRV trends, sleep quality, and recovery scores.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">📈</div>
+                <h3>Intelligent Adaptations</h3>
+                <p>Our LLM-powered system analyzes WHOOP data alongside training metrics for personalized coaching.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">🛡️</div>
+                <h3>Overtraining Prevention</h3>
+                <p>Early detection of fatigue patterns to prevent overreaching and optimize performance peaks.</p>
+            </div>
+        </div>
+
+        <!-- Dashboard Mockup -->
+        <div class="dashboard-mockup">
+            <div class="dashboard-header">
+                <h3>Training Dashboard</h3>
+                <div class="status-indicator">
+                    <div class="status-dot"></div>
+                    <span>WHOOP Connected</span>
+                </div>
+            </div>
+            
+            <div class="metrics">
+                <div class="metric recovery">
+                    <div class="metric-value" style="color: #dc2626;">67%</div>
+                    <div class="metric-label">Recovery Score</div>
+                </div>
+                
+                <div class="metric hrv">
+                    <div class="metric-value" style="color: #2563eb;">42ms</div>
+                    <div class="metric-label">HRV</div>
+                </div>
+                
+                <div class="metric sleep">
+                    <div class="metric-value" style="color: #7c3aed;">78%</div>
+                    <div class="metric-label">Sleep Score</div>
+                </div>
+                
+                <div class="metric strain">
+                    <div class="metric-value" style="color: #ea580c;">14.2</div>
+                    <div class="metric-label">Strain</div>
+                </div>
+            </div>
+
+            <!-- AI Recommendation -->
+            <div class="ai-recommendation">
+                <div class="ai-badge">
+                    <div class="ai-icon">AI</div>
+                    <h4>🧠 AI Coach Recommendation</h4>
+                </div>
+                <p>Based on your 67% recovery score and elevated HRV, I recommend reducing today's planned threshold session intensity by 15%. Your sleep quality was good, but the drop in recovery suggests accumulated fatigue from this week's training block.</p>
+                <div style="margin-top: 15px; font-size: 0.9rem; color: #3b82f6;">
+                    <strong>Confidence: 89%</strong> • Based on 14 days of WHOOP data
+                </div>
+            </div>
+        </div>
+
+        <!-- Integration Flow -->
+        <div style="text-align: center; margin-bottom: 30px;">
+            <h2>How WHOOP Integration Works</h2>
+        </div>
+        
+        <div class="integration-flow">
+            <div class="flow-step">
+                <div class="step-number step-1">1</div>
+                <h4>Connect WHOOP</h4>
+                <p>Securely connect your WHOOP account with OAuth 2.0 authentication</p>
+            </div>
+            
+            <div class="flow-step">
+                <div class="step-number step-2">2</div>
+                <h4>Data Analysis</h4>
+                <p>Our AI analyzes recovery, HRV, sleep, and strain data alongside training metrics</p>
+            </div>
+            
+            <div class="flow-step">
+                <div class="step-number step-3">3</div>
+                <h4>Smart Adaptations</h4>
+                <p>Training intensity and volume automatically adjust based on recovery status</p>
+            </div>
+            
+            <div class="flow-step">
+                <div class="step-number step-4">4</div>
+                <h4>Optimized Performance</h4>
+                <p>Achieve better results while reducing injury risk and overtraining</p>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta">
+            <h2>Ready to Experience Intelligent Training?</h2>
+            <p>Join our beta program to be among the first to experience AI-powered training adaptations with WHOOP recovery data integration.</p>
+            <a href="https://www.endurancecoaching.ai" class="btn">Visit Main Platform</a>
+            <a href="mailto:founder@endurancecoaching.ai" class="btn btn-secondary">Contact for Beta Access</a>
+        </div>
+
+        <!-- Footer -->
+        <div style="text-align: center; margin-top: 50px; padding: 20px; color: #6b7280;">
+            <p>© 2024 EnduranceCoaching.ai. This page demonstrates our planned WHOOP integration for API approval purposes.</p>
+        </div>
+    </div>
+</body>
+</html> 
