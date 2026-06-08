@@ -94,9 +94,21 @@
         }
         
         .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            color: white;
         }
+
+        .feature-icon.recovery { background: #dc2626; }
+        .feature-icon.adapt { background: #3b82f6; }
+        .feature-icon.prevent { background: #10b981; }
         
         .feature h3 {
             font-size: 1.5rem;
@@ -326,19 +338,19 @@
         <!-- Features -->
         <div class="features">
             <div class="feature">
-                <div class="feature-icon">❤️</div>
+                <div class="feature-icon recovery">R</div>
                 <h3>Recovery-Based Training</h3>
                 <p>Automatically adjust workout intensity based on HRV trends, sleep quality, and recovery scores.</p>
             </div>
             
             <div class="feature">
-                <div class="feature-icon">📈</div>
+                <div class="feature-icon adapt">A</div>
                 <h3>Intelligent Adaptations</h3>
                 <p>Our LLM-powered system analyzes WHOOP data alongside training metrics for personalized coaching.</p>
             </div>
             
             <div class="feature">
-                <div class="feature-icon">🛡️</div>
+                <div class="feature-icon prevent">P</div>
                 <h3>Overtraining Prevention</h3>
                 <p>Early detection of fatigue patterns to prevent overreaching and optimize performance peaks.</p>
             </div>
@@ -380,7 +392,7 @@
             <div class="ai-recommendation">
                 <div class="ai-badge">
                     <div class="ai-icon">AI</div>
-                    <h4>🧠 AI Coach Recommendation</h4>
+                    <h4>AI Coach Recommendation</h4>
                 </div>
                 <p>Based on your 67% recovery score and elevated HRV, I recommend reducing today's planned threshold session intensity by 15%. Your sleep quality was good, but the drop in recovery suggests accumulated fatigue from this week's training block.</p>
                 <div style="margin-top: 15px; font-size: 0.9rem; color: #3b82f6;">
@@ -398,7 +410,7 @@
             <div class="flow-step">
                 <div class="step-number step-1">1</div>
                 <h4>Connect WHOOP</h4>
-                <p>Securely connect your WHOOP account with OAuth 2.0 authentication</p>
+                <p>Example WHOOP account connection via a mock OAuth flow</p>
             </div>
             
             <div class="flow-step">
@@ -430,7 +442,7 @@
 
         <!-- Footer -->
         <div style="text-align: center; margin-top: 50px; padding: 20px; color: #6b7280;">
-            <p>© 2024 EnduranceCoaching.ai. This page demonstrates our planned WHOOP integration for API approval purposes.</p>
+            <p>© 2026 EnduranceCoaching.ai. This page demonstrates the planned WHOOP integration experience for EnduranceCoach AI.</p>
         </div>
     </div>
 </body>
